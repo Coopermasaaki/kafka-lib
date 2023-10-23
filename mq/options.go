@@ -53,6 +53,12 @@ type Options struct {
 	Context context.Context
 
 	Log Logger
+
+	User string
+
+	Pwd string
+
+	Algorithm string
 }
 
 type Option func(*Options)
@@ -119,6 +125,30 @@ func Log(log Logger) Option {
 	return func(o *Options) {
 		if log != nil {
 			o.Log = log
+		}
+	}
+}
+
+func SetUser(user string) Option {
+	return func(o *Options) {
+		if user != "" {
+			o.User = user
+		}
+	}
+}
+
+func SetPwd(pwd string) Option {
+	return func(o *Options) {
+		if pwd != "" {
+			o.Pwd = pwd
+		}
+	}
+}
+
+func SetAlgorithm(algorithm string) Option {
+	return func(o *Options) {
+		if algorithm != "" {
+			o.Algorithm = algorithm
 		}
 	}
 }
